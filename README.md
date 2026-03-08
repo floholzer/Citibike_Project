@@ -63,14 +63,13 @@ Als Alternative zu SQLTools kann auch **pgAdmin** genutzt werden – ein vollst�
 1. Stelle sicher, dass die Docker-Container laufen (`docker-compose up -d`).
 2. Öffne im Browser: [http://localhost:5050](http://localhost:5050)
 3. Melde dich mit folgenden Daten an:
-   * **E-Mail:** `admin@citibike.com`
+   * **E-Mail:** `admin@admin.com`
    * **Passwort:** `admin`
 4. Klicke links auf **"Add New Server"** und trage ein:
    * **Name:** `Citibike DWH` (frei wählbar)
    * Unter dem Reiter **Connection:**
-     * **Host:** `postgres` *(nicht `localhost` – Docker-interner Name)*
+     * **Host name/address:** `citibike_db`
      * **Port:** `5432`
-     * **Database:** `citibike_dwh`
      * **Username:** `admin`
      * **Password:** `password123`
 5. Klicke auf **Save**. Du siehst die Datenbank nun im linken Baum.
