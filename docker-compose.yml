@@ -1,15 +1,38 @@
 services:
-  postgres:
+  dwbi-postgres:
     image: postgres:15
     container_name: citibike_db
+    restart: on-failure
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password123
       POSTGRES_DB: citibike_dwh
+    shm_size: 128mb
+    networks:
+      - dwbi-network
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  dwbi-pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-ui
+    restart: on-failure
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    networks:
+      - dwbi-network
+    depends_on:
+      - dwbi-postgres
+
+# Container untereinander mit dem container namen ansprechen nicht localhost
+networks:
+  dwbi-network:
+    driver: bridge
 
 volumes:
   pgdata:
