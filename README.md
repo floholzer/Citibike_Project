@@ -33,12 +33,29 @@ Wir nutzen eine PostgreSQL-Datenbank, die sauber gekapselt in einem Docker-Conta
 
 ## 4. Python-Umgebung einrichten
 
-Damit unser Python-Skript die Daten laden und transformieren kann, brauchen wir einige Bibliotheken.
+Damit unser Python-Skript die Daten laden und transformieren kann, brauchen wir einige Bibliotheken. Wir nutzen dafür eine **virtuelle Umgebung (venv)**, damit die Pakete sauber vom Rest des Systems getrennt sind.
 
 1. Gehe wieder in das VS Code Terminal.
-2. Installiere alle benötigten Pakete mit diesem Befehl:
-`pip install -r requirements.txt`
-*(Alternativ: `pip install pandas sqlalchemy psycopg2-binary requests matplotlib`)*
+2. Erstelle eine virtuelle Umgebung im Projektordner:
+   ```bash
+   python -m venv .venv
+   ```
+3. Aktiviere die Umgebung:
+   * **Windows:**
+     ```bash
+     .venv\Scripts\activate
+     ```
+   * **Mac / Linux:**
+     ```bash
+     source .venv/bin/activate
+     ```
+   *(Du erkennst eine aktive venv daran, dass `(.venv)` am Anfang der Terminalzeile erscheint.)*
+4. Installiere alle benötigten Pakete:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+> **Hinweis:** Die venv muss jedes Mal aktiviert werden, wenn du ein neues Terminal öffnest. VS Code erkennt sie meist automatisch und aktiviert sie selbstständig.
 
 ## 5. Datenbank-Verbindung in VS Code (SQLTools)
 
@@ -57,21 +74,58 @@ Damit wir uns die Tabellen in VS Code ansehen können, richten wir die Verbindun
 
 4. Klicke unten auf **"Save Connection"** und danach auf **"Connect Now"**. Du siehst die Datenbank nun links im Menü.
 
-## 6. Die Automatisierte Pipeline starten!
+## 6. Datenbank-Verwaltung mit pgAdmin (Optional)
 
-Unser Projekt ist vollständig automatisiert. Du musst keine einzelnen Skripte händisch ausführen.
+Als Alternative zu SQLTools kann auch **pgAdmin** genutzt werden – ein vollständiges, browserbasiertes GUI für PostgreSQL. Es ist bereits im Docker-Stack integriert und läuft automatisch mit.
 
-1. Gehe in den Windows-Explorer (in deinen Projektordner).
-2. Mache einen **Doppelklick** auf die Datei **`start_pipeline.bat`**.
-3. *Lehn dich zurück! Das schwarze Terminalfenster öffnet sich und das Master-Skript (`run_pipeline.py`) übernimmt die Arbeit:*
+1. Stelle sicher, dass die Docker-Container laufen (`docker-compose up -d`).
+2. Öffne im Browser: [http://localhost:5050](http://localhost:5050)
+3. Melde dich mit folgenden Daten an:
+   * **E-Mail:** `admin@citibike.com`
+   * **Passwort:** `admin`
+4. Klicke links auf **"Add New Server"** und trage ein:
+   * **Name:** `Citibike DWH` (frei wählbar)
+   * Unter dem Reiter **Connection:**
+     * **Host:** `postgres` *(nicht `localhost` – Docker-interner Name)*
+     * **Port:** `5432`
+     * **Database:** `citibike_dwh`
+     * **Username:** `admin`
+     * **Password:** `password123`
+5. Klicke auf **Save**. Du siehst die Datenbank nun im linken Baum.
+
+> **Tipp:** pgAdmin eignet sich besonders gut für komplexere SQL-Abfragen, das Durchsuchen von Tabellen und die visuelle Darstellung des Schemas.
+
+## 7. Die Automatisierte Pipeline starten
+
+Unser Projekt ist vollständig automatisiert. Du musst keine einzelnen Skripte händisch ausführen. Das Start-Script sorgt dafür, dass Docker läuft und die Pipeline angestoßen wird.
+
+Das Script (`run_pipeline.py`) übernimmt dabei folgende Schritte:
 * Es lädt die Citi Bike CSV-Dateien (Jahre 2022-2025) herunter.
 * Es zieht die historischen Wetterdaten über die Open-Meteo API.
 * Es pusht die Daten in unsere lokale PostgreSQL-Datenbank.
 * Es triggert unsere SQL-Skripte aus dem Ordner `sql_transformations`, um das Star Schema aufzubauen.
 
+### Windows
+
+1. Gehe in den Windows-Explorer (in deinen Projektordner).
+2. Mache einen **Doppelklick** auf die Datei **`start_pipeline.bat`**.
+3. Das schwarze Terminalfenster öffnet sich und führt die Pipeline aus.
+
+### Mac / Linux
+
+1. Öffne ein Terminal und wechsle in den Projektordner.
+2. Mache das Script beim ersten Mal ausführbar (einmalig nötig):
+   ```bash
+   chmod +x start_pipeline.sh
+   ```
+3. Starte die Pipeline:
+   ```bash
+   ./start_pipeline.sh
+   ```
 
 
-## 7. Daten in Power BI laden (Das Star Schema)
+
+## 8. Daten in Power BI laden (Das Star Schema)
 
 Sobald die Pipeline erfolgreich durchgelaufen ist, können wir die Daten visualisieren.
 
