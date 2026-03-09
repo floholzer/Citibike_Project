@@ -1,0 +1,80 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram name="Seite-1" id="jnfNP9CxdT8Gkkm-c7kq">
+    <mxGraphModel dx="1426" dy="751" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-3" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="FACT_trips" vertex="1">
+          <mxGeometry height="130" width="140" x="310" y="280" as="geometry">
+            <mxRectangle height="30" width="70" x="210" y="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-4" parent="zF5Fbe8Es6_EgJeYJGfl-3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- FK: station_id&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- FK: date_key&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- FK: bike_type&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- Duration&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- Distance&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-5" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="DIM_Date" vertex="1">
+          <mxGeometry height="130" width="140" x="570" y="280" as="geometry">
+            <mxRectangle height="30" width="70" x="210" y="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-6" parent="zF5Fbe8Es6_EgJeYJGfl-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;i&gt;date_key&lt;/i&gt;&lt;/div&gt;&lt;div&gt;Day&lt;/div&gt;&lt;div&gt;Month&lt;/div&gt;&lt;div&gt;Quarter&lt;/div&gt;&lt;div&gt;Year&lt;/div&gt;&lt;div&gt;Week&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-7" edge="1" parent="1" source="zF5Fbe8Es6_EgJeYJGfl-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="zF5Fbe8Es6_EgJeYJGfl-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-8" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="DIM_bike_type" vertex="1">
+          <mxGeometry height="130" width="140" x="220" y="80" as="geometry">
+            <mxRectangle height="30" width="70" x="210" y="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-9" parent="zF5Fbe8Es6_EgJeYJGfl-8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;i&gt;bike_id&lt;/i&gt;&lt;/div&gt;&lt;div&gt;Bike Typ&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-10" edge="1" parent="1" source="zF5Fbe8Es6_EgJeYJGfl-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.514;exitY=1.02;exitDx=0;exitDy=0;exitPerimeter=0;" target="zF5Fbe8Es6_EgJeYJGfl-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="350" as="sourcePoint" />
+            <mxPoint x="540" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-11" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="DIM_Station" vertex="1">
+          <mxGeometry height="130" width="140" x="80" y="280" as="geometry">
+            <mxRectangle height="30" width="70" x="210" y="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-12" parent="zF5Fbe8Es6_EgJeYJGfl-11" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;i&gt;station_id&lt;/i&gt;&lt;/div&gt;&lt;div&gt;Name&lt;/div&gt;&lt;div&gt;Latitude&lt;/div&gt;&lt;div&gt;Longitude&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-13" edge="1" parent="1" source="zF5Fbe8Es6_EgJeYJGfl-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="zF5Fbe8Es6_EgJeYJGfl-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-14" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="DIM_Weather" vertex="1">
+          <mxGeometry height="130" width="140" x="310" y="480" as="geometry">
+            <mxRectangle height="30" width="70" x="210" y="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-15" parent="zF5Fbe8Es6_EgJeYJGfl-14" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;i&gt;date_key&lt;/i&gt;&lt;/div&gt;&lt;div&gt;Condition&lt;/div&gt;&lt;div&gt;Temperatur&lt;/div&gt;&lt;div&gt;Precipitation&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zF5Fbe8Es6_EgJeYJGfl-18" edge="1" parent="1" source="zF5Fbe8Es6_EgJeYJGfl-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.457;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="zF5Fbe8Es6_EgJeYJGfl-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="374" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cZv0AzgQGaoIZK3782me-1" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="DIM_user_type" vertex="1">
+          <mxGeometry height="130" width="140" x="414" y="80" as="geometry">
+            <mxRectangle height="30" width="70" x="210" y="150" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cZv0AzgQGaoIZK3782me-2" parent="cZv0AzgQGaoIZK3782me-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;i&gt;user_id&lt;/i&gt;&lt;/div&gt;&lt;div&gt;User Typ&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cZv0AzgQGaoIZK3782me-3" edge="1" parent="1" source="cZv0AzgQGaoIZK3782me-2" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="zF5Fbe8Es6_EgJeYJGfl-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
