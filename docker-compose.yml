@@ -7,7 +7,12 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password123
       POSTGRES_DB: citibike_dwh
-    shm_size: 128mb
+    command: >
+      postgres
+        -c shared_buffers=512MB
+        -c work_mem=64MB
+        -c effective_cache_size=2GB
+        -c max_parallel_workers_per_gather=2
     networks:
       - dwbi-network
     ports:
