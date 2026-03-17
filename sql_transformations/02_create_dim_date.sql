@@ -8,6 +8,7 @@ WITH all_dates AS (
 )
 -- 2. Wir reichern das Datum mit nützlichen Analyse-Spalten für Power BI an
 SELECT DISTINCT 
+    TO_CHAR(date_val, 'YYYYMMDD')::INTEGER AS date_sk, -- Smart Surrogate Key (z.B. 20240115)
     date_val AS date_key,
     EXTRACT(YEAR FROM date_val) AS year,
     EXTRACT(MONTH FROM date_val) AS month,

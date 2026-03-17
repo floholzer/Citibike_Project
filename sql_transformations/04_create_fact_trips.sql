@@ -37,11 +37,12 @@ SELECT
     st.ride_id,
     
     -- 3. Die Foreign Keys (Surrogate Keys der Dimensionen)
-    CAST(st.started_at AS TIMESTAMP)::DATE AS date_key,
+    TO_CHAR(CAST(st.started_at AS TIMESTAMP)::DATE, 'YYYYMMDD')::INTEGER AS date_sk,
     ds_start.station_sk AS start_station_sk,
     ds_end.station_sk AS end_station_sk,
     db.bike_sk,
     du.user_sk,
+    dw.weather_sk,
     
     -- 4. Unsere Metrik (Measure): Fahrtdauer in Minuten berechnen
     -- Wir ziehen Startzeit von Endzeit ab und rechnen es in Minuten um
@@ -55,6 +56,7 @@ LEFT JOIN dim_station ds_start ON st.start_station_id = ds_start.station_id
 LEFT JOIN dim_station ds_end ON st.end_station_id = ds_end.station_id
 LEFT JOIN dim_bike db ON st.rideable_type = db.bike_type
 LEFT JOIN dim_user_type du ON st.member_casual = du.user_type
+LEFT JOIN dim_weather dw ON CAST(st.started_at AS TIMESTAMP)::DATE = dw.date_key
 -- Wir nehmen nur Fahrten, die auch wirklich Stationen und Zeiten haben
 WHERE st.start_station_id IS NOT NULL 
   AND st.end_station_id IS NOT NULL
