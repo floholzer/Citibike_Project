@@ -113,7 +113,8 @@ sql_dateien = [
     "02_create_dim_date.sql",
     "03_create_dim_bike.sql",
     "04_create_fact_trips.sql",
-    "05_create_dim_weather.sql"
+    "05_create_dim_weather.sql",
+    "06_create_dim_user_type.sql"
 ]
 
 with engine.begin() as conn:
