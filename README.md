@@ -114,6 +114,5 @@ Sobald die Pipeline erfolgreich durchgelaufen ist, können wir die Daten visuali
 2. Klicke auf **Daten abrufen** -> **Mehr...** -> **PostgreSQL-Datenbank**.
 3. Gib ein: Server: `localhost`, Datenbank: `citibike_dwh`, Modus: **Importieren**.
 4. Gehe links auf den Reiter **Datenbank** und nutze die Zugangsdaten (`admin` / `password123`).
-5. Wähle im Navigator die **`fact_trips`** Tabelle sowie alle vier **`dim_`** Tabellen aus und lade sie.
+5. Wähle im Navigator die **`fact_trips`** Tabelle sowie alle fünf **`dim_`** Tabellen aus und lade sie.
 6. Gehe links in die **Modellansicht**, um unser fertiges Star Schema zu bewundern!
-
