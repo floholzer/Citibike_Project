@@ -21,16 +21,23 @@ WITH all_stations AS (
     UNION
     SELECT end_station_id AS station_id, end_station_name AS station_name, end_lat AS lat, end_lng AS lng
     FROM staging_citibike_trips WHERE end_station_id IS NOT NULL
+),
+grouped_stations AS (
+    SELECT 
+        station_id, 
+        MAX(station_name) AS station_name, 
+        MAX(lat) AS lat, 
+        MAX(lng) AS lng
+    FROM all_stations
+    GROUP BY station_id
 )
--- PRO-TIPP: Wir gruppieren nach ID, da GPS-Koordinaten minimal schwanken können.
--- So garantieren wir, dass jede Station wirklich nur ein einziges Mal in der Tabelle auftaucht (wichtig für Power BI)!
 SELECT 
+    ROW_NUMBER() OVER (ORDER BY station_id) AS station_sk, -- Surrogate Key
     station_id, 
-    MAX(station_name) AS station_name, 
-    MAX(lat) AS lat, 
-    MAX(lng) AS lng
-FROM all_stations
-GROUP BY station_id;
+    station_name, 
+    lat, 
+    lng
+FROM grouped_stations;
 
 -- Zur Kontrolle in VS Code
 -- SELECT * FROM dim_station LIMIT 10;
