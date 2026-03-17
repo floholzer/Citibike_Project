@@ -38,8 +38,6 @@ SELECT
     start_station_id,
     end_station_id,
     rideable_type AS bike_type,
-    
-    -- NEU HINZUGEFÜGT: Der Nutzertyp (Member vs. Casual) für Power BI Auswertungen!
     member_casual AS user_type,
     
     -- 3. Unsere Metrik (Measure): Fahrtdauer in Minuten berechnen
