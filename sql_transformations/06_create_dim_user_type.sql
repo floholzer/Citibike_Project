@@ -10,6 +10,3 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY user_type) AS user_sk, -- Surrogate Key
     user_type
 FROM unique_users;
-
--- Zur Kontrolle in VS Code
--- SELECT * FROM dim_user_type;

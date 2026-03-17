@@ -1,27 +1,3 @@
--- -- Erstelle die Wetter-Dimension
--- CREATE TABLE dim_weather AS
--- SELECT 
---     -- Wir stellen sicher, dass der Schlüssel ein echtes Datumsformat ist
---     CAST(date_key AS DATE) AS date_key,
-    
---     -- Unsere Messwerte
---     temp_max_celsius,
---     temp_min_celsius,
---     precipitation_mm,
-    
---     -- Ein kleiner Data-Engineering-Bonus für Power BI: 
---     -- Wir erstellen eine Text-Spalte, die sagt, ob es an dem Tag geregnet hat!
---     CASE 
---         WHEN precipitation_mm > 0 THEN 'Rainy'
---         ELSE 'Dry'
---     END AS weather_condition
-
--- FROM staging_weather_historical;
-
--- -- Zur Kontrolle: Zeige uns die ersten 10 Tage
--- SELECT * FROM dim_weather LIMIT 10;
-
-
 DROP TABLE IF EXISTS dim_weather;
 -- Erstelle die Wetter-Dimension
 CREATE TABLE dim_weather AS
