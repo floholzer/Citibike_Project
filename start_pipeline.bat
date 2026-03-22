@@ -26,7 +26,7 @@ if not exist ".venv" (
     )
 )
 call .venv\Scripts\activate
-pip install -r requirements.txt --quiet
+python -m pip install -r requirements.txt --quiet
 if %ERRORLEVEL% neq 0 (
     echo FEHLER: Pakete konnten nicht installiert werden.
     pause
