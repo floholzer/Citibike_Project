@@ -41,7 +41,7 @@ print("Starte ELT-Pipeline (Big Data Edition: 2022 - 2025)...")
 print("-" * 50)
 
 # ==========================================
-# PHASE 1: Fahrräder (Extract & Load)
+# PHASE 1: Fahrräder (Extract, Transform & Load)
 # ==========================================
 print("1. Lade Citi Bike Daten...")
 
@@ -67,7 +67,34 @@ for year in range(2022, 2026):
                 with zip_file.open(csv_filename) as f:
                     # Chunking schützt den Arbeitsspeicher bei Millionen von Zeilen
                     for chunk in pd.read_csv(f, chunksize=50000, low_memory=False):
+                        
+                        # ==========================================
+                        # DATENBEREINIGUNG (Transformation in Python)
+                        # ==========================================
+                        
+                        # 1. Datentypen anpassen & Fahrtdauer berechnen
+                        chunk['started_at'] = pd.to_datetime(chunk['started_at'])
+                        chunk['ended_at'] = pd.to_datetime(chunk['ended_at'])
+                        chunk['duration_minutes'] = (chunk['ended_at'] - chunk['started_at']).dt.total_seconds() / 60
+                        
+                        # 2. Zeitliche Ausreißer filtern (nur Fahrten zwischen 1 Min und 24h)
+                        chunk = chunk[(chunk['duration_minutes'] >= 1) & (chunk['duration_minutes'] <= 1440)]
+                        
+                        # 3. Fehlende Werte in kritischen Spalten löschen
+                        kritische_spalten = ['start_station_id', 'end_station_id', 'end_lat', 'end_lng']
+                        chunk = chunk.dropna(subset=kritische_spalten)
+                        
+                        # 4. Geo-Ausreißer filtern (Fokus auf NY/NJ)
+                        chunk = chunk[
+                            (chunk['start_lat'] > 40.0) & (chunk['start_lat'] < 41.5) & 
+                            (chunk['start_lng'] < -73.0) & (chunk['start_lng'] > -74.5)
+                        ]
+                        
+                        # ==========================================
+                        # LOAD (Saubere Daten ins Staging schreiben)
+                        # ==========================================
                         chunk.to_sql('staging_citibike_trips', engine, if_exists='append', index=False)
+            
             elif response.status_code == 404:
                 print(f"   Datei für {month_str}/{year} nicht gefunden. Überspringe...")
             else:

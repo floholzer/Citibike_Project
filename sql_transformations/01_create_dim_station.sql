@@ -11,8 +11,9 @@ grouped_stations AS (
     SELECT 
         station_id, 
         MAX(station_name) AS station_name, 
-        MAX(lat) AS lat, 
-        MAX(lng) AS lng
+        -- AVG berechnet genau den "Schnittpunkt" der Koordinaten, falls es leichte Abweichungen gibt
+        AVG(lat) AS lat, 
+        AVG(lng) AS lng
     FROM all_stations
     GROUP BY station_id
 )
