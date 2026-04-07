@@ -5,7 +5,6 @@ SELECT
     TO_CHAR(CAST(st.started_at AS TIMESTAMP)::DATE, 'YYYYMMDD')::INTEGER AS date_sk,
     TO_CHAR(CAST(st.ended_at AS TIMESTAMP)::DATE, 'YYYYMMDD')::INTEGER AS end_date_sk,
     ds_start.station_sk AS start_station_sk,
-    ds_end.station_sk AS end_station_sk,
     db.bike_sk,
     du.user_sk,
     dw.weather_sk,
@@ -23,17 +22,14 @@ SELECT
 
 FROM staging_citibike_trips st
 LEFT JOIN dim_station ds_start ON st.start_station_id = ds_start.station_id
-LEFT JOIN dim_station ds_end ON st.end_station_id = ds_end.station_id
 LEFT JOIN dim_bike db ON st.rideable_type = db.bike_type
 LEFT JOIN dim_user_type du ON st.member_casual = du.user_type
 LEFT JOIN dim_weather dw ON CAST(st.started_at AS TIMESTAMP)::DATE = dw.date_key
 -- Wir nehmen nur Fahrten, die auch wirklich Stationen und Zeiten haben
 WHERE st.start_station_id IS NOT NULL 
-  AND st.end_station_id IS NOT NULL
   AND st.started_at IS NOT NULL
     AND st.ended_at IS NOT NULL
     AND ds_start.station_sk IS NOT NULL
-    AND ds_end.station_sk IS NOT NULL
     AND db.bike_sk IS NOT NULL
     AND du.user_sk IS NOT NULL
     AND dw.weather_sk IS NOT NULL
@@ -41,7 +37,6 @@ GROUP BY
         TO_CHAR(CAST(st.started_at AS TIMESTAMP)::DATE, 'YYYYMMDD')::INTEGER,
         TO_CHAR(CAST(st.ended_at AS TIMESTAMP)::DATE, 'YYYYMMDD')::INTEGER,
         ds_start.station_sk,
-        ds_end.station_sk,
         db.bike_sk,
         du.user_sk,
         dw.weather_sk;
@@ -53,7 +48,6 @@ PRIMARY KEY (
         date_sk,
         end_date_sk,
         start_station_sk,
-        end_station_sk,
         bike_sk,
         user_sk,
         weather_sk
