@@ -10,3 +10,6 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY user_type) AS user_sk, -- Surrogate Key
     user_type
 FROM unique_users;
+
+ALTER TABLE dim_user_type
+ADD CONSTRAINT pk_dim_user_type PRIMARY KEY (user_sk);

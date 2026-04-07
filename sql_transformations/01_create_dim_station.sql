@@ -24,3 +24,6 @@ SELECT
     lat, 
     lng
 FROM grouped_stations;
+
+ALTER TABLE dim_station
+ADD CONSTRAINT pk_dim_station PRIMARY KEY (station_sk);

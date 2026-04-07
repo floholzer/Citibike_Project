@@ -16,5 +16,5 @@ SELECT DISTINCT
     TRIM(TO_CHAR(date_val, 'Day')) AS day_of_week
 FROM all_dates;
 
--- Zur Kontrolle: Zeige uns die ersten 10 Tage
-SELECT * FROM dim_date LIMIT 10;
+ALTER TABLE dim_date
+ADD CONSTRAINT pk_dim_date PRIMARY KEY (date_sk);

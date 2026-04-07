@@ -23,3 +23,6 @@ SELECT
     precipitation_mm,
     weather_condition
 FROM cleaned_weather;
+
+ALTER TABLE dim_weather
+ADD CONSTRAINT pk_dim_weather PRIMARY KEY (weather_sk);

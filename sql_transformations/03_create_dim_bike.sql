@@ -11,5 +11,5 @@ SELECT
     bike_type
 FROM unique_bikes;
 
--- Zeige das Ergebnis
-SELECT * FROM dim_bike;
+ALTER TABLE dim_bike
+ADD CONSTRAINT pk_dim_bike PRIMARY KEY (bike_sk);
